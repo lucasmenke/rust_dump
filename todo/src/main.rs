@@ -1,5 +1,7 @@
 mod args;
 
+use std::intrinsics::likely;
+
 use args::TodoArgs;
 use clap::Parser;
 
