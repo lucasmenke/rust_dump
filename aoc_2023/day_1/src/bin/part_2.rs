@@ -1,30 +1,54 @@
 use std::io::Error;
 
 fn main() {
-    let input = include_str!("./input.txt");
+    let input = include_str!("./input_2.txt");
     match process(input) {
-        Ok(result) => assert_eq!("281", result), 
-        Err(error) => println!("{}", error)
+        Ok(result) => println!("{result}"), 
+        Err(error) => println!("{error}")
     }
 }
 
 fn process(_input: &str) -> Result<String, Error> {
     let result = _input.lines().map(|line| {
-        let mod_line = line
-            .replace("one", "1")
-            .replace("two", "2")
-            .replace("three", "3")
-            .replace("four", "4")
-            .replace("five", "5")
-            .replace("six", "6")
-            .replace("seven", "7")
-            .replace("eight", "8")
-            .replace("nine", "9");
-        
-        
-    });
+        let mut iterator = (0..line.len()).filter_map(|index| {
+            let reduced_line = &line[index..];
+            let output = if reduced_line.starts_with("one") {
+                '1'
+            } else if reduced_line.starts_with("two") {
+                '2'
+            } else if reduced_line.starts_with("three") {
+                '3'
+            } else if reduced_line.starts_with("four") {
+                '4'
+            } else if reduced_line.starts_with("five") {
+                '5'
+            } else if reduced_line.starts_with("six") {
+                '6'
+            } else if reduced_line.starts_with("seven") {
+                '7'
+            } else if reduced_line.starts_with("eight") {
+                '8'
+            } else if reduced_line.starts_with("nine") {
+                '9'
+            } else {
+                reduced_line.chars().next().unwrap()
+            };
 
-    Ok(0.to_string())
+            output.to_digit(10)
+        });
+
+        let first = iterator.next().expect("Should be a number");
+
+        match iterator.last() {
+            Some(number) => format!("{first}{number}"),
+            None => format!("{first}{first}")
+        }
+        .parse::<u32>()
+        .expect("Shoulb be a number")
+    })
+    .sum::<u32>();
+
+    Ok(result.to_string())
 }
 
 #[cfg(test)]
