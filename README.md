@@ -1,1 +1,3 @@
-# sample_projects
+# rust dump
+
+A collection of sample rust projects.
