@@ -7,7 +7,7 @@ fn main() {
 fn process(_input: &str) -> u32 {
     // create a vector to store each line & number
     let mut numbers = Vec::new();
-    let mut lines = Vec::new();
+let mut lines = Vec::new();
     for line in _input.lines() {
         lines.push(line);
     }

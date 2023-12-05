@@ -10,8 +10,10 @@ fn main() {
 
 fn process(_input: &str) -> Result<String, Error> {
     let result = _input.lines().map(|line| {
+        println!("Line: {line}");
         let mut iterator = (0..line.len()).filter_map(|index| {
             let reduced_line = &line[index..];
+            println!("Index: {index}, Reduced Line: {reduced_line}");
             let output = if reduced_line.starts_with("one") {
                 '1'
             } else if reduced_line.starts_with("two") {
@@ -33,12 +35,11 @@ fn process(_input: &str) -> Result<String, Error> {
             } else {
                 reduced_line.chars().next().unwrap()
             };
-
+            
             output.to_digit(10)
         });
-
+      
         let first = iterator.next().expect("Should be a number");
-
         match iterator.last() {
             Some(number) => format!("{first}{number}"),
             None => format!("{first}{first}")
