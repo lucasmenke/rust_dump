@@ -1,11 +1,45 @@
+use regex::Regex;
+use std::io::Error;
+
+const RED: u8 = 12;
+const GREEN: u8 = 13;
+const BLUE: u8 = 14;
+
 fn main() {
     let input = include_str!("./input_1.txt");
-    let result = process(input);
-    println!("{result}");
+    match process(input) {
+        Ok(result) => println!("{}", result),
+        Err(error) => println!("{}", error),
+    }
 }
 
-fn process(_input: &str) -> u32 {
-    0
+fn process(input: &str) -> Result<u32, Error> {
+    let result = input
+        .lines()
+        .map(|line| {
+            // check if game passes
+
+            // get game id
+            let mut game_id = extract_game_number(&line);
+        })
+        .sum::<u32>();
+
+    Ok(result)
+}
+
+fn game_pass(input: &str) -> bool {
+    true
+}
+
+fn extract_game_number(input: &str) -> Option<u32> {
+    let re = Regex::new(r"Game (\d+):").unwrap();
+    if let Some(captures) = re.captures(input) {
+        if let Some(number) = captures.get(1) {
+            return Some(number.as_str().parse().unwrap());
+        }
+    }
+
+    None
 }
 
 #[cfg(test)]

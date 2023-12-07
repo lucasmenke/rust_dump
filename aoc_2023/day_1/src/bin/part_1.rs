@@ -1,17 +1,17 @@
 fn main() {
     let input = include_str!("./input_1.txt");
     let result = process(input);
-    println!("{}", result);      
+    println!("{}", result);
 }
 
 fn process(_input: &str) -> u32 {
     // create a vector to store each line & number
     let mut numbers = Vec::new();
-let mut lines = Vec::new();
+    let mut lines = Vec::new();
     for line in _input.lines() {
         lines.push(line);
     }
-    
+
     let mut first: char = '0';
     let mut second: char = '0';
     for line in lines {
@@ -36,7 +36,7 @@ let mut lines = Vec::new();
             numbers.push(number);
         }
     }
- 
+
     numbers.iter().sum()
 }
 
