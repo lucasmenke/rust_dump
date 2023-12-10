@@ -10,8 +10,8 @@ fn main() {
     let s1 = String::from("test"); // each heap data only has one owner -> s1
     println!("s1: {} {:p}", &s1, &s1);
     let s2 = s1; // ownership moves from s1 to s2 -> s1 gets dropped
-    // rust doesn't do shallow copies -> avoid dangling pointers
-    println!("s2: {} {:p}", s2, &s2); // moving values creates new pointer -> prevent double freeing memory 
+                 // rust doesn't do shallow copies -> avoid dangling pointers
+    println!("s2: {} {:p}", s2, &s2); // moving values creates new pointer -> prevent double freeing memory
     let s3 = s2.clone(); // data on heap gets cloned -> s2 & s3 point to different memory addresses
     println!("s3: {} {:p}", s3, &s3);
 
@@ -19,7 +19,7 @@ fn main() {
     #[derive(Debug)]
     struct Rectangle {
         width: u32,
-        height: u32
+        height: u32,
     }
     impl Rectangle {
         fn area(&self) -> u32 {
@@ -31,11 +31,11 @@ fn main() {
     }
     let rec1 = Rectangle {
         width: 10,
-        height: 10
+        height: 10,
     };
     let rec2 = Rectangle {
         width: 10,
-        height: 12
+        height: 12,
     };
     if rec2.can_hold(&rec1) {
         println!("Rec2 can hold Rec1: {} - {}", rec2.area(), rec1.area())
