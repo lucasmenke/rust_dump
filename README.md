@@ -43,7 +43,11 @@ Details
   - Value Member -> worauf das angezeigt bassiert 
   - DataBindings -> Selected Value (z.B. Bestellungen -> Personal Nr) 
 
- 
+<ins>Expressions</ins>
+
+1. NordwindDataSet.xsd öffnen
+2. neues Feld hinzufügen
+3. Expression -> Parent(ArtikelBestelldetails).Artikelnamen
 
  
 ``` csharp
