@@ -40,4 +40,20 @@ fn main() {
     if rec2.can_hold(&rec1) {
         println!("Rec2 can hold Rec1: {} - {}", rec2.area(), rec1.area())
     }
+
+    // ENUM
+    enum IpAddr {
+        IPv4(u8, u8, u8, u8),
+        IPv6(String),
+    }
+    impl IpAddr {
+        fn call(&self) {
+            match self {
+                IpAddr::IPv4(a, b, c, d) => println!("{}.{}.{}.{}", a, b, c, d),
+                IpAddr::IPv6(s) => println!("{}", s),
+            }
+        }
+    }
+    let ipv4 = IpAddr::IPv4(127, 0, 0, 1);
+    ipv4.call();
 }
