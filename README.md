@@ -1,3 +1,3 @@
-# rust dump
+# Rust Dump
 
-A collection of sample rust projects.
+Dump for different Rust projects
